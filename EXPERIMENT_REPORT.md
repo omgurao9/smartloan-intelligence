@@ -77,3 +77,12 @@ These are sample-specific descriptive metrics. They do not establish legal compl
 
 ## 9. Reproducibility
 Run the scripts in README.md from the repository root. The final machine-readable report is `reports/models/final_evaluation.json`. Model binaries, datasets, and local prediction history are generated locally and are not committed.
+
+
+## 10. Feature ablation: previous-default history
+A validation-only Random Forest ablation was performed with identical model settings and split:
+- With `previous_loan_defaults_on_file`: ROC-AUC 0.9720; PR-AUC 0.9249.
+- Without it: ROC-AUC 0.9173; PR-AUC 0.8501.
+- Difference after removing it: ROC-AUC -0.0547; PR-AUC -0.0748.
+
+This indicates strong dependence on previous-default history in this dataset. It does not establish that the feature is inappropriate, but the feature's provenance, timing, and target relationship deserve explicit scrutiny.
