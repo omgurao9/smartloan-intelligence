@@ -80,3 +80,10 @@ The GitHub repository is intentionally public by user choice. Never commit appli
 - Test-set subgroup metrics at the frozen 0.28 threshold: gender TPR female 0.8474 vs male 0.8542; age-band TPR 18–25 0.8771, 26–35 0.8231, 36–45 0.8417, 46–60 0.8824. Age 61–83 had only 10 records and is suppressed.
 - These are descriptive sample metrics, not fairness certification. No threshold tuning was performed using subgroup test results.
 - See EXPERIMENT_REPORT.md for full experiment summary and limitations.
+
+## Previous-default feature ablation
+A validation-only Random Forest ablation was run after adding optional feature exclusion to the preprocessing pipeline:
+- With `previous_loan_defaults_on_file`: ROC-AUC 0.9720; PR-AUC 0.9249.
+- Without it: ROC-AUC 0.9173; PR-AUC 0.8501.
+- Change from removing it: ROC-AUC -0.0547; PR-AUC -0.0748.
+This large drop confirms the model relies strongly on this feature. It does not prove the feature is invalid, but it strengthens the need to document provenance, timing, and its target relationship.
