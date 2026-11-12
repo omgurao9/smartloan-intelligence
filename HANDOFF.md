@@ -34,23 +34,25 @@ Earlier project notes mention:
 These are historical notes only. Reinspect the actual files and validate target meaning, feature availability, outliers, and preprocessing before relying on these findings. Never commit either dataset.
 
 ## Current repository state
-- README.md: minimal starter text.
-- .gitignore: excludes CSV/XLSX datasets, common Python artifacts, secrets, local databases, and frontend build/dependency folders.
-- CLAUDE.md: project working rules.
-- DATA_AUDIT.md: verified comparison of raw/clean datasets and starter-code review.
-- Existing ZIP scaffold: useful but not production-ready; see DATA_AUDIT.md for concrete defects.
+- README.md now contains local setup and evaluation instructions.
+- CLAUDE.md contains concise output-first working rules.
+- DATA_AUDIT.md contains dataset findings, code review, and measured model results.
+- Python ML preprocessing, cleaning, EDA, split, training, calibration, FastAPI backend, tests, and React/Vite frontend source are in the repository.
+- Generated CSVs, model binaries, and SQLite history remain local and are not committed.
 
-## Verified checks
-- Raw CSV copies are byte-identical; ZIP cleaned CSV matches separately uploaded cleaned CSV row-for-row.
-- Raw: 45,000 × 14, 0 missing, 0 duplicates.
-- Clean: 44,991 × 14, 0 missing, 0 duplicates; nine records excluded by the documented age/experience rule.
-- `python -m compileall -q scripts ml backend tests`: passed.
-- `python -m pytest -q`: 2 passed.
-- Bare `pytest -q` failed import discovery in the review environment; use `python -m pytest` or add test configuration.
-- No trained model artifacts were present in the ZIP.
+## Verified local run
+- Cleaned dataset: 44,991 rows.
+- Stratified split: train 31,493; validation 6,749; test 6,749.
+- Eight baselines trained; XGBoost selected by validation PR-AUC (0.9336).
+- Sigmoid calibration fitted with 5-fold stratified CV on training only.
+- Threshold selected on validation: 0.28.
+- Final holdout: accuracy 0.9255, balanced accuracy 0.8990, precision 0.8202, recall 0.8513, F1 0.8355, ROC-AUC 0.9770, PR-AUC 0.9351, Brier 0.0517.
+- `python -m compileall -q backend scripts ml tests`: passed.
+- `python -m pytest -q`: 4 passed, including API prediction and local history test.
+- Frontend build has not yet been run in this environment.
 
 ## Important data limitation
-The dataset has an approval/status label, not a post-loan repayment/default outcome. The project must describe approval/status classification, not future default prediction. The previous-default feature has a very strong one-way relationship with the target; see DATA_AUDIT.md.
+The target is `loan_status`; the data does not prove future repayment/default outcomes. Describe the app as a loan-status classifier. A strong one-way relationship exists between previous-default history and target; see DATA_AUDIT.md.
 
 ## Next action
-Repair the training and calibration/evaluation scripts before model training. Fix SVM sampling, create a leakage-safe calibration strategy, keep the test split untouched until final evaluation, and generate actual artifacts/metrics. Do not ask Claude to redo the dataset audit.
+Verify frontend build/runtime, then implement and test explainability (SHAP), fairness metrics, and constrained what-if analysis. Do not retrain or tune against the held-out test results.
