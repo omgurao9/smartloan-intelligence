@@ -73,3 +73,10 @@ The GitHub repository is intentionally public by user choice. Never commit appli
 - Frontend now omits loan-to-income ratio as an applicant-entered value and displays it as a derived value.
 - Local verification: `python -m compileall -q backend scripts ml tests` passed; `python -m pytest -q` passed with 4 tests.
 - Generated model binaries and data splits remain local and are not committed.
+
+## Explainability and subgroup audit (2026-11-12)
+- SHAP completed on 300 validation observations across the five calibrated XGBoost fold estimators.
+- The largest mean absolute SHAP feature was `previous_loan_defaults_on_file_Yes`, followed by interest rate, loan-to-income ratio, and income. SHAP values explain underlying fold-model scores, not calibrated probabilities or causal effects.
+- Test-set subgroup metrics at the frozen 0.28 threshold: gender TPR female 0.8474 vs male 0.8542; age-band TPR 18–25 0.8771, 26–35 0.8231, 36–45 0.8417, 46–60 0.8824. Age 61–83 had only 10 records and is suppressed.
+- These are descriptive sample metrics, not fairness certification. No threshold tuning was performed using subgroup test results.
+- See EXPERIMENT_REPORT.md for full experiment summary and limitations.
