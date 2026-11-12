@@ -58,3 +58,18 @@ Issues to fix before relying on the pipeline:
 
 ## Privacy and repository handling
 The GitHub repository is intentionally public by user choice. Never commit applicant-level CSVs, local databases, model binaries, secrets, or other generated private artifacts. The repository's existing `.gitignore` should be retained and checked before local files are pushed.
+
+
+## Repaired pipeline and measured results (2026-11-12)
+- Fixed SVM subsampling to use stratified `train_test_split`; `DataFrame.sample(stratify=...)` was invalid.
+- Baseline training now reads train and validation only; it does not load the test split.
+- Eight baseline models were trained locally. XGBoost achieved the highest validation PR-AUC (0.9336), followed by Random Forest (0.9249).
+- The selected XGBoost pipeline was calibrated with sigmoid calibration using 5-fold stratified CV within the training split.
+- Classification threshold was selected by maximum validation F1: 0.28.
+- Final test metrics at that fixed threshold: accuracy 0.9255, balanced accuracy 0.8990, precision 0.8202, recall 0.8513, specificity 0.9467, F1 0.8355, ROC-AUC 0.9770, PR-AUC 0.9351, Brier score 0.0517.
+- Split sizes: train 31,493; validation 6,749; test 6,749.
+- Full measured report: `reports/models/final_evaluation.json`.
+- Backend repaired to load the model once at startup, read the threshold from metadata, derive `loan_percent_income` internally, and store local prediction history.
+- Frontend now omits loan-to-income ratio as an applicant-entered value and displays it as a derived value.
+- Local verification: `python -m compileall -q backend scripts ml tests` passed; `python -m pytest -q` passed with 4 tests.
+- Generated model binaries and data splits remain local and are not committed.
