@@ -1,0 +1,35 @@
+{
+  "selected_model": "xgboost",
+  "selection_metric": "validation PR-AUC from baseline_comparison.csv",
+  "calibration": "sigmoid; 5-fold stratified CV on training split only",
+  "threshold_selection": "maximum validation F1; test labels not used",
+  "selected_threshold": 0.28,
+  "final_test_metrics": {
+    "threshold": 0.28,
+    "accuracy": 0.9254704400651949,
+    "balanced_accuracy": 0.8989949196672382,
+    "precision": 0.8201669877970456,
+    "recall": 0.8513333333333334,
+    "specificity": 0.946656506001143,
+    "f1": 0.8354596009159306,
+    "roc_auc": 0.9770395630913825,
+    "pr_auc": 0.9350515263464212,
+    "brier_score": 0.051675007552948814,
+    "confusion_matrix": [
+      [
+        4969,
+        280
+      ],
+      [
+        223,
+        1277
+      ]
+    ]
+  },
+  "split_sizes": {
+    "train": 31493,
+    "validation": 6749,
+    "test": 6749
+  },
+  "target_semantics_note": "Metrics describe the dataset's loan_status label only. They do not establish prediction of future repayment or default. Verify source label provenance."
+}
