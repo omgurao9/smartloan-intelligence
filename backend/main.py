@@ -43,6 +43,22 @@ class Applicant(BaseModel):
         values["loan_percent_income"] = self.loan_amnt / self.person_income
         return values
 
+class WhatIfScenario(BaseModel):
+    """Hypothetical changes to limited financial/loan terms only."""
+    person_income: float | None = Field(default=None, gt=0)
+    loan_amnt: float | None = Field(default=None, gt=0)
+    loan_int_rate: float | None = Field(default=None, gt=0)
+
+    @model_validator(mode="after")
+    def require_change(self):
+        if all(value is None for value in self.model_dump().values()):
+            raise ValueError("Provide at least one supported what-if change.")
+        return self
+
+class WhatIfRequest(BaseModel):
+    applicant: Applicant
+    scenarios: list[WhatIfScenario] = Field(min_length=1, max_length=5)
+
 def get_db():
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     connection = sqlite3.connect(DB_PATH)
@@ -65,7 +81,7 @@ async def lifespan(_app: FastAPI):
     _model_metadata = None
 
 app = FastAPI(
-    title="SmartLoan Intelligence API", version="1.1.0",
+    title="SmartLoan Intelligence API", version="1.2.0",
     description="Educational classification of the dataset's loan_status label; not a future-default or real lending decision service.",
     lifespan=lifespan,
 )
@@ -101,6 +117,32 @@ def predict(applicant: Applicant):
         "approval_probability": probability, "threshold": threshold,
         "decision": decision, "target_label": "loan_status",
         "disclaimer": "Educational estimate of the dataset label; not a real lending decision or future-default prediction.",
+    }
+
+@app.post("/api/what-if")
+def what_if(request: WhatIfRequest):
+    if _loaded_model is None or _model_metadata is None:
+        raise HTTPException(503, "Model artifact unavailable. Run training and calibration first.")
+    baseline_features = request.applicant.model_features()
+    baseline_probability = float(_loaded_model.predict_proba(pd.DataFrame([baseline_features]))[0, 1])
+    results = []
+    for index, scenario in enumerate(request.scenarios, start=1):
+        features = dict(baseline_features)
+        changes = {key: value for key, value in scenario.model_dump().items() if value is not None}
+        features.update(changes)
+        features["loan_percent_income"] = features["loan_amnt"] / features["person_income"]
+        probability = float(_loaded_model.predict_proba(pd.DataFrame([features]))[0, 1])
+        results.append({
+            "scenario": index, "changes": changes,
+            "derived_loan_percent_income": features["loan_percent_income"],
+            "class_1_probability": probability,
+            "difference_from_baseline": probability - baseline_probability,
+        })
+    return {
+        "baseline_class_1_probability": baseline_probability,
+        "threshold": float(_model_metadata["threshold"]),
+        "scenarios": results,
+        "disclaimer": "Hypothetical model sensitivity only. These changes are not causal recommendations, do not guarantee approval, and do not represent a real lending decision.",
     }
 
 @app.get("/api/model-performance")
