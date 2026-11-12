@@ -1,0 +1,26 @@
+{
+  "rows": 44991,
+  "columns": 14,
+  "target_distribution": {
+    "0": 34991,
+    "1": 10000
+  },
+  "missing_values": 0,
+  "duplicates": 0,
+  "approval_by_previous_default": {
+    "No": 0.45175280086736536,
+    "Yes": 0.0
+  },
+  "numeric_correlations": {
+    "loan_status": 1.0,
+    "loan_percent_income": 0.38488458804986986,
+    "loan_int_rate": 0.3320397010537852,
+    "loan_amnt": 0.10772100576466602,
+    "credit_score": -0.0073412452429886706,
+    "cb_person_cred_hist_length": -0.014621533870172588,
+    "person_emp_exp": -0.019325634492797374,
+    "person_age": -0.02034825393932638,
+    "person_income": -0.16903958889994503
+  },
+  "interpretation_warning": "Verify target label provenance; this dataset label is not demonstrated to be future repayment/default."
+}

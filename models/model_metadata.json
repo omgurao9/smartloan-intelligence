@@ -1,0 +1,7 @@
+{
+  "model_file": "final_calibrated_model.joblib",
+  "selected_model": "xgboost",
+  "threshold": 0.3499999999999999,
+  "positive_class": 1,
+  "target": "loan_status"
+}

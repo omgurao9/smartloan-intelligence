@@ -1,0 +1,235 @@
+{
+  "explanation_scope": "Mean signed SHAP across fold estimators; descriptive local feature contributions, not causal effects.",
+  "examples": [
+    {
+      "sample_index": 0,
+      "calibrated_class_1_probability": 0.036268682449883585,
+      "top_features": [
+        {
+          "feature": "loan_intent_VENTURE",
+          "mean_signed_shap": -1.2040934562683105
+        },
+        {
+          "feature": "loan_int_rate",
+          "mean_signed_shap": -1.1891369819641113
+        },
+        {
+          "feature": "previous_loan_defaults_on_file_Yes",
+          "mean_signed_shap": 1.0711414813995361
+        },
+        {
+          "feature": "loan_percent_income",
+          "mean_signed_shap": -0.7280785441398621
+        },
+        {
+          "feature": "person_income",
+          "mean_signed_shap": 0.6344637274742126
+        },
+        {
+          "feature": "loan_intent_HOMEIMPROVEMENT",
+          "mean_signed_shap": -0.19857828319072723
+        },
+        {
+          "feature": "person_home_ownership_RENT",
+          "mean_signed_shap": 0.18787404894828796
+        },
+        {
+          "feature": "cb_person_cred_hist_length",
+          "mean_signed_shap": 0.11378489434719086
+        },
+        {
+          "feature": "person_home_ownership_OWN",
+          "mean_signed_shap": 0.08290883153676987
+        },
+        {
+          "feature": "loan_amnt",
+          "mean_signed_shap": -0.07721913605928421
+        }
+      ]
+    },
+    {
+      "sample_index": 1,
+      "calibrated_class_1_probability": 0.9506075987365072,
+      "top_features": [
+        {
+          "feature": "loan_int_rate",
+          "mean_signed_shap": 1.9113245010375977
+        },
+        {
+          "feature": "previous_loan_defaults_on_file_Yes",
+          "mean_signed_shap": 1.3733357191085815
+        },
+        {
+          "feature": "person_income",
+          "mean_signed_shap": 0.6609803438186646
+        },
+        {
+          "feature": "loan_intent_VENTURE",
+          "mean_signed_shap": -0.5994951725006104
+        },
+        {
+          "feature": "loan_percent_income",
+          "mean_signed_shap": -0.3906444013118744
+        },
+        {
+          "feature": "person_home_ownership_RENT",
+          "mean_signed_shap": 0.29072335362434387
+        },
+        {
+          "feature": "loan_intent_DEBTCONSOLIDATION",
+          "mean_signed_shap": -0.16805337369441986
+        },
+        {
+          "feature": "loan_intent_HOMEIMPROVEMENT",
+          "mean_signed_shap": -0.118665412068367
+        },
+        {
+          "feature": "loan_intent_MEDICAL",
+          "mean_signed_shap": -0.11558882892131805
+        },
+        {
+          "feature": "person_home_ownership_OWN",
+          "mean_signed_shap": 0.08792922645807266
+        }
+      ]
+    },
+    {
+      "sample_index": 2,
+      "calibrated_class_1_probability": 0.01936683693137671,
+      "top_features": [
+        {
+          "feature": "previous_loan_defaults_on_file_Yes",
+          "mean_signed_shap": -6.619981288909912
+        },
+        {
+          "feature": "credit_score",
+          "mean_signed_shap": 0.5034716129302979
+        },
+        {
+          "feature": "loan_int_rate",
+          "mean_signed_shap": -0.29664555191993713
+        },
+        {
+          "feature": "person_home_ownership_RENT",
+          "mean_signed_shap": -0.1891203671693802
+        },
+        {
+          "feature": "loan_amnt",
+          "mean_signed_shap": 0.15821573138237
+        },
+        {
+          "feature": "person_income",
+          "mean_signed_shap": 0.15765278041362762
+        },
+        {
+          "feature": "loan_intent_PERSONAL",
+          "mean_signed_shap": -0.09713190793991089
+        },
+        {
+          "feature": "loan_percent_income",
+          "mean_signed_shap": -0.09118399769067764
+        },
+        {
+          "feature": "loan_intent_VENTURE",
+          "mean_signed_shap": 0.09037668257951736
+        },
+        {
+          "feature": "loan_intent_MEDICAL",
+          "mean_signed_shap": -0.06059499830007553
+        }
+      ]
+    },
+    {
+      "sample_index": 3,
+      "calibrated_class_1_probability": 0.01931811963157169,
+      "top_features": [
+        {
+          "feature": "previous_loan_defaults_on_file_Yes",
+          "mean_signed_shap": -6.321253776550293
+        },
+        {
+          "feature": "person_income",
+          "mean_signed_shap": -0.7559272646903992
+        },
+        {
+          "feature": "loan_int_rate",
+          "mean_signed_shap": -0.5764471292495728
+        },
+        {
+          "feature": "loan_intent_DEBTCONSOLIDATION",
+          "mean_signed_shap": 0.23346218466758728
+        },
+        {
+          "feature": "person_home_ownership_RENT",
+          "mean_signed_shap": -0.15753164887428284
+        },
+        {
+          "feature": "credit_score",
+          "mean_signed_shap": 0.1499389111995697
+        },
+        {
+          "feature": "loan_percent_income",
+          "mean_signed_shap": -0.13457907736301422
+        },
+        {
+          "feature": "loan_amnt",
+          "mean_signed_shap": -0.12489762157201767
+        },
+        {
+          "feature": "loan_intent_VENTURE",
+          "mean_signed_shap": 0.10638508945703506
+        },
+        {
+          "feature": "person_income_log",
+          "mean_signed_shap": -0.10291662067174911
+        }
+      ]
+    },
+    {
+      "sample_index": 4,
+      "calibrated_class_1_probability": 0.019335918644388123,
+      "top_features": [
+        {
+          "feature": "previous_loan_defaults_on_file_Yes",
+          "mean_signed_shap": -6.402636528015137
+        },
+        {
+          "feature": "person_income",
+          "mean_signed_shap": -0.5200762748718262
+        },
+        {
+          "feature": "loan_intent_DEBTCONSOLIDATION",
+          "mean_signed_shap": 0.2873089909553528
+        },
+        {
+          "feature": "credit_score",
+          "mean_signed_shap": 0.17039701342582703
+        },
+        {
+          "feature": "person_home_ownership_RENT",
+          "mean_signed_shap": -0.15157046914100647
+        },
+        {
+          "feature": "loan_percent_income",
+          "mean_signed_shap": -0.13883861899375916
+        },
+        {
+          "feature": "loan_amnt",
+          "mean_signed_shap": -0.1051674336194992
+        },
+        {
+          "feature": "loan_int_rate",
+          "mean_signed_shap": -0.0914730578660965
+        },
+        {
+          "feature": "loan_intent_MEDICAL",
+          "mean_signed_shap": -0.07663389295339584
+        },
+        {
+          "feature": "loan_intent_VENTURE",
+          "mean_signed_shap": 0.06380864977836609
+        }
+      ]
+    }
+  ]
+}

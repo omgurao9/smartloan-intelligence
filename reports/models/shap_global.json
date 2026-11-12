@@ -1,0 +1,137 @@
+{
+  "explanation_scope": "Mean absolute SHAP for underlying XGBoost fold estimators; not calibrated probability or causality.",
+  "sample_size": 300,
+  "ensemble_folds": 5,
+  "features": [
+    {
+      "feature": "previous_loan_defaults_on_file_Yes",
+      "mean_abs_shap": 3.590125560760498,
+      "rank": 1
+    },
+    {
+      "feature": "loan_int_rate",
+      "mean_abs_shap": 0.6249109506607056,
+      "rank": 2
+    },
+    {
+      "feature": "loan_percent_income",
+      "mean_abs_shap": 0.6152536869049072,
+      "rank": 3
+    },
+    {
+      "feature": "person_income",
+      "mean_abs_shap": 0.5005865097045898,
+      "rank": 4
+    },
+    {
+      "feature": "person_home_ownership_RENT",
+      "mean_abs_shap": 0.2669871747493744,
+      "rank": 5
+    },
+    {
+      "feature": "loan_intent_VENTURE",
+      "mean_abs_shap": 0.23452767729759216,
+      "rank": 6
+    },
+    {
+      "feature": "credit_score",
+      "mean_abs_shap": 0.205277681350708,
+      "rank": 7
+    },
+    {
+      "feature": "person_home_ownership_OWN",
+      "mean_abs_shap": 0.15532036125659943,
+      "rank": 8
+    },
+    {
+      "feature": "loan_amnt",
+      "mean_abs_shap": 0.1317148506641388,
+      "rank": 9
+    },
+    {
+      "feature": "loan_intent_DEBTCONSOLIDATION",
+      "mean_abs_shap": 0.12272597849369049,
+      "rank": 10
+    },
+    {
+      "feature": "loan_intent_HOMEIMPROVEMENT",
+      "mean_abs_shap": 0.10764876753091812,
+      "rank": 11
+    },
+    {
+      "feature": "loan_intent_MEDICAL",
+      "mean_abs_shap": 0.07406281679868698,
+      "rank": 12
+    },
+    {
+      "feature": "person_income_log",
+      "mean_abs_shap": 0.07119562476873398,
+      "rank": 13
+    },
+    {
+      "feature": "loan_intent_EDUCATION",
+      "mean_abs_shap": 0.06776163727045059,
+      "rank": 14
+    },
+    {
+      "feature": "person_home_ownership_MORTGAGE",
+      "mean_abs_shap": 0.059263646602630615,
+      "rank": 15
+    },
+    {
+      "feature": "person_age",
+      "mean_abs_shap": 0.04520028084516525,
+      "rank": 16
+    },
+    {
+      "feature": "cb_person_cred_hist_length",
+      "mean_abs_shap": 0.04357393458485603,
+      "rank": 17
+    },
+    {
+      "feature": "loan_intent_PERSONAL",
+      "mean_abs_shap": 0.031169742345809937,
+      "rank": 18
+    },
+    {
+      "feature": "person_emp_exp",
+      "mean_abs_shap": 0.030396729707717896,
+      "rank": 19
+    },
+    {
+      "feature": "person_gender_male",
+      "mean_abs_shap": 0.012892124243080616,
+      "rank": 20
+    },
+    {
+      "feature": "person_education_Associate",
+      "mean_abs_shap": 0.00896637886762619,
+      "rank": 21
+    },
+    {
+      "feature": "person_education_High School",
+      "mean_abs_shap": 0.007214774377644062,
+      "rank": 22
+    },
+    {
+      "feature": "person_education_Bachelor",
+      "mean_abs_shap": 0.006755261216312647,
+      "rank": 23
+    },
+    {
+      "feature": "person_education_Master",
+      "mean_abs_shap": 0.003997799940407276,
+      "rank": 24
+    },
+    {
+      "feature": "person_home_ownership_OTHER",
+      "mean_abs_shap": 0.000568720861338079,
+      "rank": 25
+    },
+    {
+      "feature": "person_education_Doctorate",
+      "mean_abs_shap": 0.0005517363897524774,
+      "rank": 26
+    }
+  ]
+}

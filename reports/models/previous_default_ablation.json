@@ -1,0 +1,11 @@
+[
+  {
+    "model": "random_forest",
+    "roc_auc_with_feature": 0.9717061027497301,
+    "roc_auc_without_feature": 0.9176791769860925,
+    "roc_auc_change": -0.054026925763637657,
+    "pr_auc_with_feature": 0.924408675763933,
+    "pr_auc_without_feature": 0.8504872162634881,
+    "pr_auc_change": -0.07392145950044493
+  }
+]

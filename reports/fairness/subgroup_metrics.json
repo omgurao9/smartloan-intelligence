@@ -1,0 +1,134 @@
+{
+  "threshold": 0.3499999999999999,
+  "evaluation_split": "held-out test; descriptive audit only",
+  "minimum_group_size": 50,
+  "groups": {
+    "person_gender": [
+      {
+        "group": "female",
+        "n": 2927,
+        "suppressed": false,
+        "selection_rate": 0.20942944994875298,
+        "true_positive_rate": 0.8235294117647058,
+        "false_positive_rate": 0.04134029590948651,
+        "precision": 0.8450244698205547,
+        "accuracy": 0.9296207721216262
+      },
+      {
+        "group": "male",
+        "n": 3822,
+        "suppressed": false,
+        "selection_rate": 0.22344322344322345,
+        "true_positive_rate": 0.8312284730195177,
+        "false_positive_rate": 0.04405286343612335,
+        "precision": 0.8477751756440282,
+        "accuracy": 0.9275248560962847
+      }
+    ],
+    "person_education": [
+      {
+        "group": "Associate",
+        "n": 1820,
+        "suppressed": false,
+        "selection_rate": 0.22417582417582418,
+        "true_positive_rate": 0.8309859154929577,
+        "false_positive_rate": 0.03873744619799139,
+        "precision": 0.8676470588235294,
+        "accuracy": 0.9307692307692308
+      },
+      {
+        "group": "Bachelor",
+        "n": 1950,
+        "suppressed": false,
+        "selection_rate": 0.23333333333333334,
+        "true_positive_rate": 0.8445945945945946,
+        "false_positive_rate": 0.05312084993359894,
+        "precision": 0.8241758241758241,
+        "accuracy": 0.9235897435897436
+      },
+      {
+        "group": "Doctorate",
+        "n": 89,
+        "suppressed": false,
+        "selection_rate": 0.20224719101123595,
+        "true_positive_rate": 1.0,
+        "false_positive_rate": 0.013888888888888888,
+        "precision": 0.9444444444444444,
+        "accuracy": 0.9887640449438202
+      },
+      {
+        "group": "High School",
+        "n": 1856,
+        "suppressed": false,
+        "selection_rate": 0.20905172413793102,
+        "true_positive_rate": 0.8138957816377171,
+        "false_positive_rate": 0.04129387474191328,
+        "precision": 0.845360824742268,
+        "accuracy": 0.9272629310344828
+      },
+      {
+        "group": "Master",
+        "n": 1034,
+        "suppressed": false,
+        "selection_rate": 0.19148936170212766,
+        "true_positive_rate": 0.8,
+        "false_positive_rate": 0.03640776699029126,
+        "precision": 0.8484848484848485,
+        "accuracy": 0.9303675048355899
+      }
+    ],
+    "age_band": [
+      {
+        "group": "18-25",
+        "n": 3023,
+        "suppressed": false,
+        "selection_rate": 0.23718160767449553,
+        "true_positive_rate": 0.8559322033898306,
+        "false_positive_rate": 0.04794816414686825,
+        "precision": 0.8451882845188284,
+        "accuracy": 0.9295401918623883
+      },
+      {
+        "group": "26-35",
+        "n": 3023,
+        "suppressed": false,
+        "selection_rate": 0.2031094938802514,
+        "true_positive_rate": 0.7953846153846154,
+        "false_positive_rate": 0.04087652760219132,
+        "precision": 0.8420195439739414,
+        "accuracy": 0.9239166391002316
+      },
+      {
+        "group": "36-45",
+        "n": 580,
+        "suppressed": false,
+        "selection_rate": 0.19482758620689655,
+        "true_positive_rate": 0.8333333333333334,
+        "false_positive_rate": 0.02826086956521739,
+        "precision": 0.8849557522123894,
+        "accuracy": 0.9431034482758621
+      },
+      {
+        "group": "46-60",
+        "n": 113,
+        "suppressed": false,
+        "selection_rate": 0.1504424778761062,
+        "true_positive_rate": 0.8235294117647058,
+        "false_positive_rate": 0.03125,
+        "precision": 0.8235294117647058,
+        "accuracy": 0.9469026548672567
+      },
+      {
+        "group": "61-83",
+        "n": 10,
+        "suppressed": true
+      }
+    ]
+  },
+  "limitations": [
+    "Group metrics describe this dataset and sample only; they do not prove legal or ethical fairness.",
+    "Small groups are suppressed below the configured minimum count.",
+    "The dataset label is not established as future repayment or default.",
+    "The threshold was selected before test evaluation; do not tune it using these subgroup results."
+  ]
+}

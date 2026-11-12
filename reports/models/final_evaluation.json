@@ -1,0 +1,57 @@
+{
+  "selected_model": "xgboost",
+  "selection_metric": "validation PR-AUC from baseline_comparison.csv",
+  "calibration": "sigmoid; 5-fold stratified CV on training split only",
+  "threshold_selection": "maximum validation F1; test labels not used",
+  "selected_threshold": 0.3499999999999999,
+  "validation_metrics_at_selected_threshold": {
+    "threshold": 0.3499999999999999,
+    "accuracy": 0.9305082234405097,
+    "balanced_accuracy": 0.8912820854765987,
+    "precision": 0.8602375960866527,
+    "recall": 0.8206666666666667,
+    "specificity": 0.9618975042865308,
+    "f1": 0.839986352780621,
+    "roc_auc": 0.9747230583603226,
+    "pr_auc": 0.9320595331201196,
+    "brier_score": 0.05177055396455528,
+    "confusion_matrix": [
+      [
+        5049,
+        200
+      ],
+      [
+        269,
+        1231
+      ]
+    ]
+  },
+  "final_test_metrics": {
+    "threshold": 0.3499999999999999,
+    "accuracy": 0.9284338420506741,
+    "balanced_accuracy": 0.8925673461611736,
+    "precision": 0.8466257668711656,
+    "recall": 0.828,
+    "specificity": 0.9571346923223472,
+    "f1": 0.8372093023255814,
+    "roc_auc": 0.977029402425859,
+    "pr_auc": 0.9352169795022911,
+    "brier_score": 0.05145326130562456,
+    "confusion_matrix": [
+      [
+        5024,
+        225
+      ],
+      [
+        258,
+        1242
+      ]
+    ]
+  },
+  "split_sizes": {
+    "train": 31493,
+    "validation": 6749,
+    "test": 6749
+  },
+  "target_semantics_note": "Metrics describe the dataset's loan_status label only. They do not establish prediction of future repayment or default. Verify source label provenance."
+}
