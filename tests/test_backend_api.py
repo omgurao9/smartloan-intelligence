@@ -28,3 +28,22 @@ def test_prediction_derives_income_ratio_and_persists(monkeypatch, tmp_path):
     assert "loan_percent_income" not in applicant
     assert history.status_code == 200
     assert len(history.json()) == 1
+
+def test_what_if_only_accepts_supported_financial_changes():
+    applicant = {
+        "person_age": 32, "person_gender": "male", "person_education": "Bachelor",
+        "person_income": 60000, "person_emp_exp": 8, "person_home_ownership": "RENT",
+        "loan_amnt": 10000, "loan_intent": "PERSONAL", "loan_int_rate": 11,
+        "cb_person_cred_hist_length": 6, "credit_score": 680,
+        "previous_loan_defaults_on_file": "No",
+    }
+    with TestClient(main.app) as client:
+        response = client.post("/api/what-if", json={
+            "applicant": applicant,
+            "scenarios": [{"loan_amnt": 8000}, {"person_income": 70000, "loan_int_rate": 9.5}],
+        })
+    assert response.status_code == 200, response.text
+    payload = response.json()
+    assert len(payload["scenarios"]) == 2
+    assert payload["scenarios"][0]["derived_loan_percent_income"] == 8000 / 60000
+    assert "guarantee" in payload["disclaimer"]
