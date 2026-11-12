@@ -64,7 +64,7 @@ def get_db():
     connection = sqlite3.connect(DB_PATH)
     connection.execute("""CREATE TABLE IF NOT EXISTS predictions (
         id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT DEFAULT CURRENT_TIMESTAMP,
-        approval_probability REAL NOT NULL, decision TEXT NOT NULL, payload TEXT NOT NULL
+        class_1_probability REAL NOT NULL, decision TEXT NOT NULL, payload TEXT NOT NULL
     )""")
     connection.commit()
     return connection
@@ -101,20 +101,20 @@ def predict(applicant: Applicant):
     features = applicant.model_features()
     probability = float(_loaded_model.predict_proba(pd.DataFrame([features]))[0, 1])
     threshold = float(_model_metadata["threshold"])
-    decision = "APPROVED" if probability >= threshold else "NOT_APPROVED"
+    decision = "CLASS_1" if probability >= threshold else "CLASS_0"
     record = applicant.model_dump()
     record["loan_percent_income"] = features["loan_percent_income"]
     connection = get_db()
     try:
         connection.execute(
-            "INSERT INTO predictions(approval_probability, decision, payload) VALUES (?, ?, ?)",
+            "INSERT INTO predictions(class_1_probability, decision, payload) VALUES (?, ?, ?)",
             (probability, decision, json.dumps(record)),
         )
         connection.commit()
     finally:
         connection.close()
     return {
-        "approval_probability": probability, "threshold": threshold,
+        "class_1_probability": probability, "threshold": threshold,
         "decision": decision, "target_label": "loan_status",
         "disclaimer": "Educational estimate of the dataset label; not a real lending decision or future-default prediction.",
     }
@@ -179,8 +179,8 @@ def predictions():
     connection = get_db()
     try:
         rows = connection.execute(
-            "SELECT id, created_at, approval_probability, decision FROM predictions ORDER BY id DESC LIMIT 50"
+            "SELECT id, created_at, class_1_probability, decision FROM predictions ORDER BY id DESC LIMIT 50"
         ).fetchall()
     finally:
         connection.close()
-    return [{"id": r[0], "created_at": r[1], "approval_probability": r[2], "decision": r[3]} for r in rows]
+    return [{"id": r[0], "created_at": r[1], "class_1_probability": r[2], "decision": r[3]} for r in rows]
