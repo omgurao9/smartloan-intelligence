@@ -38,9 +38,9 @@ These are historical notes only. Reinspect the actual files and validate target 
 - ARCHITECTURE.md, MODEL_CARD.md, EXPERIMENT_REPORT.md, and VIVA_PREPARATION.md are committed.
 - CLAUDE.md contains concise output-first working rules.
 - DATA_AUDIT.md contains dataset findings, code review, and measured model results.
-- Python ML preprocessing, cleaning, EDA, split, training, calibration, SHAP and subgroup fairness scripts, FastAPI backend, tests, and React/Vite frontend source are in the repository.
+- Python ML preprocessing, cleaning, EDA, split, training, calibration, SHAP and subgroup fairness scripts, FastAPI backend, tests, and a five-view React/Vite dashboard are in the repository.
 - API includes prediction using neutral class-0/class-1 terminology, constrained financial what-if scenarios, model metrics, final evaluation, SHAP global report, fairness report, and local history endpoints.
-- Frontend package dependencies are pinned for reproducibility.
+- Frontend package dependencies are pinned for reproducibility. The dashboard connects to prediction, model-performance, evaluation, SHAP, fairness, and what-if endpoints. Dashboard styles use local CSS without remote font dependencies.
 - Generated CSVs, model binaries, and SQLite history remain local and are not committed.
 
 ## Verified local run
@@ -56,10 +56,10 @@ These are historical notes only. Reinspect the actual files and validate target 
 - `python -m scripts.01_clean_data`, `python -m scripts.03_split_data`, and `python -m scripts.05_ablation` verified successfully using module execution.
 - `PYTHONPATH=. python scripts/07_shap.py`: completed; global and local SHAP JSON reports generated for 300 validation examples across 5 folds.
 - `PYTHONPATH=. python scripts/08_fairness.py`: completed; gender, education, and age-band subgroup metrics generated on the held-out test split.
-- Frontend build has not yet been run; npm dependency installation timed out in this environment, so the Vite build remains unverified.
+- Frontend build has not yet been run in this environment. Claude's previous frontend response did not implement the requested dashboard views; ChatGPT replaced main.jsx and style.css with the complete dashboard. The user must run npm install and npm run build locally to verify it.
 
 ## Important data limitation
 The target is `loan_status`; the data does not prove future repayment/default outcomes. Describe the app as a loan-status classifier. A strong one-way relationship exists between previous-default history and target; see DATA_AUDIT.md.
 
 ## Next action
-Finish frontend dashboard integration for metrics, SHAP, fairness, and what-if; verify a production frontend build and local end-to-end run. Then complete documentation/viva package. Do not retrain or tune against held-out test results.
+User next action: run the Windows local setup in README.md, including npm install and npm run build in frontend. Fix any build/runtime errors from the actual laptop environment. Do not retrain or tune against held-out test results.
