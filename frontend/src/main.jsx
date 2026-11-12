@@ -105,7 +105,7 @@ function App() {
             {result && <div className="result">
               <div className="eyebrow">PREDICTED DATASET LABEL</div>
               <div className="decision">{result.decision.replace("_", " ")}</div>
-              <div className="prob">{(result.approval_probability * 100).toFixed(1)}<span>%</span></div>
+              <div className="prob">{(result.class_1_probability * 100).toFixed(1)}<span>%</span></div>
               <p className="sub">Estimated probability of class 1 in this dataset.</p>
               <div className="meter"><span style={{ width: `${result.approval_probability * 100}%` }} /></div>
               <div className="threshold"><span>Classification threshold</span><strong>{(result.threshold * 100).toFixed(0)}%</strong></div>
