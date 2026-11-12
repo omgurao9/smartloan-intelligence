@@ -18,20 +18,23 @@ def clean_dataframe(frame: pd.DataFrame) -> pd.DataFrame:
     x = x.loc[(x["person_age"] < 84) & (x["person_emp_exp"] <= x["person_age"] - 18)].copy()
     return x.reset_index(drop=True)
 
-def make_preprocessor(scale_numeric=True):
+def make_preprocessor(scale_numeric=True, drop_features=None):
+    dropped = set(drop_features or [])
+    numeric_columns = [column for column in NUMERIC if column not in dropped]
+    categorical_columns = [column for column in CATEGORICAL if column not in dropped]
     numeric = Pipeline([("scaler", StandardScaler())]) if scale_numeric else "passthrough"
     return ColumnTransformer(
         transformers=[
-            ("num", numeric, NUMERIC),
-            ("cat", OneHotEncoder(drop="if_binary", handle_unknown="ignore"), CATEGORICAL),
+            ("num", numeric, numeric_columns),
+            ("cat", OneHotEncoder(drop="if_binary", handle_unknown="ignore"), categorical_columns),
         ],
         remainder="drop",
         verbose_feature_names_out=False,
     )
 
-def make_pipeline(estimator):
+def make_pipeline(estimator, drop_features=None):
     return Pipeline([
         ("features", FunctionTransformer(add_features, validate=False)),
-        ("preprocess", make_preprocessor(True)),
+        ("preprocess", make_preprocessor(True, drop_features)),
         ("model", estimator),
     ])
