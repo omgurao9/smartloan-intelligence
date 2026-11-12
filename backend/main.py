@@ -160,6 +160,20 @@ def final_evaluation():
         raise HTTPException(404, "Final evaluation report not found.")
     return json.loads(path.read_text(encoding="utf-8"))
 
+@app.get("/api/explainability/global")
+def explainability_global():
+    path = ROOT / "reports/models/shap_global.json"
+    if not path.exists():
+        raise HTTPException(404, "Run scripts/07_shap.py to generate SHAP explanations.")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+@app.get("/api/fairness")
+def fairness_report():
+    path = ROOT / "reports/fairness/subgroup_metrics.json"
+    if not path.exists():
+        raise HTTPException(404, "Run scripts/08_fairness.py to generate the subgroup audit.")
+    return json.loads(path.read_text(encoding="utf-8"))
+
 @app.get("/api/predictions")
 def predictions():
     connection = get_db()
