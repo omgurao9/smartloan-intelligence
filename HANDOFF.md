@@ -34,11 +34,12 @@ Earlier project notes mention:
 These are historical notes only. Reinspect the actual files and validate target meaning, feature availability, outliers, and preprocessing before relying on these findings. Never commit either dataset.
 
 ## Current repository state
-- README.md now contains local setup and evaluation instructions.
+- README.md now contains Windows local setup, evaluation commands, and links to architecture, experiment report, model card, and viva preparation.
+- ARCHITECTURE.md, MODEL_CARD.md, EXPERIMENT_REPORT.md, and VIVA_PREPARATION.md are committed.
 - CLAUDE.md contains concise output-first working rules.
 - DATA_AUDIT.md contains dataset findings, code review, and measured model results.
 - Python ML preprocessing, cleaning, EDA, split, training, calibration, SHAP and subgroup fairness scripts, FastAPI backend, tests, and React/Vite frontend source are in the repository.
-- API includes prediction, constrained financial what-if scenarios, model metrics, final evaluation, SHAP global report, fairness report, and local history endpoints.
+- API includes prediction using neutral class-0/class-1 terminology, constrained financial what-if scenarios, model metrics, final evaluation, SHAP global report, fairness report, and local history endpoints.
 - Frontend package dependencies are pinned for reproducibility.
 - Generated CSVs, model binaries, and SQLite history remain local and are not committed.
 
