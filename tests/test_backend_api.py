@@ -23,7 +23,7 @@ def test_prediction_derives_income_ratio_and_persists(monkeypatch, tmp_path):
         expected_threshold = main._model_metadata["threshold"]
     assert response.status_code == 200, response.text
     result = response.json()
-    assert 0 <= result["approval_probability"] <= 1
+    assert 0 <= result["class_1_probability"] <= 1
     assert result["threshold"] == expected_threshold
     assert "loan_percent_income" not in applicant
     assert history.status_code == 200
