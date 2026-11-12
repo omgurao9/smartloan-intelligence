@@ -37,7 +37,20 @@ These are historical notes only. Reinspect the actual files and validate target 
 - README.md: minimal starter text.
 - .gitignore: excludes CSV/XLSX datasets, common Python artifacts, secrets, local databases, and frontend build/dependency folders.
 - CLAUDE.md: project working rules.
-- Implementation has not yet been verified.
+- DATA_AUDIT.md: verified comparison of raw/clean datasets and starter-code review.
+- Existing ZIP scaffold: useful but not production-ready; see DATA_AUDIT.md for concrete defects.
+
+## Verified checks
+- Raw CSV copies are byte-identical; ZIP cleaned CSV matches separately uploaded cleaned CSV row-for-row.
+- Raw: 45,000 × 14, 0 missing, 0 duplicates.
+- Clean: 44,991 × 14, 0 missing, 0 duplicates; nine records excluded by the documented age/experience rule.
+- `python -m compileall -q scripts ml backend tests`: passed.
+- `python -m pytest -q`: 2 passed.
+- Bare `pytest -q` failed import discovery in the review environment; use `python -m pytest` or add test configuration.
+- No trained model artifacts were present in the ZIP.
+
+## Important data limitation
+The dataset has an approval/status label, not a post-loan repayment/default outcome. The project must describe approval/status classification, not future default prediction. The previous-default feature has a very strong one-way relationship with the target; see DATA_AUDIT.md.
 
 ## Next action
-Audit the actual local dataset files and produce a concise data-quality report and approved preprocessing/splitting plan before training models. If the files are not available in the current working environment, ask the user to provide them rather than guessing.
+Repair the training and calibration/evaluation scripts before model training. Fix SVM sampling, create a leakage-safe calibration strategy, keep the test split untouched until final evaluation, and generate actual artifacts/metrics. Do not ask Claude to redo the dataset audit.
