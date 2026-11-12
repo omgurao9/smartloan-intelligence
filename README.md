@@ -18,12 +18,12 @@ A local, educational ML application that compares classification models, calibra
 3. Install dependencies: `pip install -r requirements.txt`.
 4. Run the pipeline from the repository root:
    ```bash
-   python scripts/01_clean_data.py
-   python scripts/02_eda.py
-   python scripts/03_split_data.py
-   python scripts/04_train_models.py
-   python scripts/06_calibration.py
-   python -m pytest -q
+   python -m scripts.01_clean_data
+   python -m scripts.02_eda
+   python -m scripts.03_split_data
+   python -m scripts.04_train_models
+   python -m scripts.06_calibration
+   python -m scripts.05_ablation\n   python -m scripts.07_shap\n   python -m scripts.08_fairness\n   python -m pytest -q
    ```
 5. Start the API: `uvicorn backend.main:app --reload`.
 6. Start the frontend in another terminal: `cd frontend && npm install && npm run dev`.
